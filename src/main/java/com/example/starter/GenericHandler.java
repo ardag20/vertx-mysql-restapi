@@ -5,10 +5,7 @@ import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.sqlclient.Row;
-import io.vertx.sqlclient.RowSet;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class GenericHandler {
 
@@ -41,13 +38,7 @@ public class GenericHandler {
         );
         }
         rc.end(jsonArray.encodePrettily());
-        /*List<String> list = new ArrayList();
-        for(Row row: rowset)                       //gelen rowsetlerı jsona cevırıceksın, her bır rowu cevırıceksın bu rowları da bır json arrayıne koyucaksın sonrasında .end()'in ıcıne json arrayı koyucaksın.
-        {                                         // 29-32 arasında cozuceksın bu olayı, hepsı ıcın bunları tekrarlıyıcaksın.
-          list.add(row.getValue(1).toString()); // 1 yerıne name yazarssın ısmı degıstırınce. jsonArray.encodePrettily() bunu da endlerken
 
-        }
-        rc.end(list.toString());*/
       }
     });
   }

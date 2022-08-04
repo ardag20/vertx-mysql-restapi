@@ -12,8 +12,7 @@ import io.vertx.sqlclient.RowSet;
 import io.vertx.sqlclient.SqlClient;
 
 public class MainVerticle extends AbstractVerticle {
-  final String getAll = "select * from Muze";
-  final String getInBesiktas = "select * from Muze where Konum='Besiktas'";
+
   @Override
   public void start(Promise<Void> startPromise) throws Exception {
     MySQLConnectOptions connectOptions = new MySQLConnectOptions()
@@ -39,25 +38,6 @@ public class MainVerticle extends AbstractVerticle {
     router.get("/api/museums/location/:locationName").handler(handler::readByLocation);
                 ///api/museums/rating/:rating  hepsı ıcın yapılıcak.
 
-
-// A simple query
-    /*client
-      .query(getInBesiktas)
-      .execute(ar -> {
-        if (ar.succeeded()) {
-          RowSet<Row> result = ar.result();
-          for(Row museum: result)
-          {
-            System.out.println(museum.getString("İsim"));
-          }
-          System.out.println("Got " + result.size() + " rows ");
-        } else {
-          System.out.println("Failure: " + ar.cause().getMessage());
-        }
-
-        // Now close the pool
-        client.close();
-      });*/
 
     vertx.createHttpServer().requestHandler(router).listen(8080, http -> {
       if (http.succeeded()) {
