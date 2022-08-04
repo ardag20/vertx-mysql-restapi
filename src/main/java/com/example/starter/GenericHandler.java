@@ -14,6 +14,10 @@ public class GenericHandler {
   public GenericHandler(MuseumRepository repository) {
     this.repository = repository;
   }
+  public void readByRating(RoutingContext rc)
+  {
+
+  }
 
   public void  readByLocation(RoutingContext rc)    //rating için de yapılır, tum colıumnlar ıcın
   {
