@@ -6,6 +6,7 @@ import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.sqlclient.Row;
+import io.vertx.sqlclient.RowSet;
 
 public class GenericTheatreHandler {
 
@@ -30,12 +31,180 @@ public class GenericTheatreHandler {
         {
           jsonArray.add(
             new JsonObject()
-              .put("number",row.getValue("Number"))
-              .put("playname",row.getValue("Play_Name"))
-              .put("date",row.getValue("Date"))
-              .put("time",row.getValue("Time"))
-              .put("theatrename",row.getValue("Theatre_Name"))
-              .put("type",row.getValue("Type"))
+              .put("Number",row.getValue("Number"))
+              .put("Play name",row.getValue("Play_Name"))
+              .put("Date",row.getValue("Date"))
+              .put("Time",row.getValue("Time"))
+              .put("Theatre Name",row.getValue("Theatre_Name"))
+              .put("Type",row.getValue("Type"))
+          );
+        }
+        rc.end(jsonArray.encodePrettily());
+      }
+    });
+  }
+
+  public void readByPlayName(RoutingContext rc)
+  {
+    String playname = rc.pathParam("playname");
+    repository.readByPlayName(playname, (bool, rowset)->{
+      if(bool==false)
+      {
+        System.out.println("ERROR!");
+      }
+      else
+      {
+        JsonArray jsonArray = new JsonArray();
+        for(Row row: rowset)
+        {
+          jsonArray.add(
+            new JsonObject()
+              .put("Number",row.getValue("Number"))
+              .put("Play Name",row.getValue("Play_Name"))
+              .put("Date",row.getValue("Date"))
+              .put("Time",row.getValue("Time"))
+              .put("Theatre Name",row.getValue("Theatre_Name"))
+              .put("Type",row.getValue("Type"))
+          );
+        }
+        rc.end(jsonArray.encodePrettily());
+      }
+    });
+  }
+
+  public void readByDate(RoutingContext rc)
+  {
+    String date = rc.pathParam("date");
+    repository.readByDate(date, (bool, rowset)->{
+      if(bool==false)
+      {
+        System.out.println("ERROR!");
+      }
+      else
+      {
+        JsonArray jsonArray = new JsonArray();
+        for(Row row: rowset)
+        {
+          jsonArray.add(
+            new JsonObject()
+              .put("Number",row.getValue("Number"))
+              .put("Play Name",row.getValue("Play_Name"))
+              .put("Date",row.getValue("Date"))
+              .put("Time",row.getValue("Time"))
+              .put("Theatre Name",row.getValue("Theatre_Name"))
+              .put("Type",row.getValue("Type"))
+          );
+        }
+        rc.end(jsonArray.encodePrettily());
+      }
+    });
+  }
+
+  public void readByTime(RoutingContext rc)
+  {
+    String time = rc.pathParam("time");
+    repository.readByTime(time, (bool,rowset)->{
+      if(bool==false)
+      {
+        System.out.println("ERROR!");
+      }
+      else
+      {
+        JsonArray jsonArray = new JsonArray();
+        for(Row row: rowset)
+        {
+          jsonArray.add(
+            new JsonObject()
+              .put("Number",row.getValue("Number"))
+              .put("Play Name",row.getValue("Play_Name"))
+              .put("Date",row.getValue("Date"))
+              .put("Time",row.getValue("Time"))
+              .put("Theatre Name",row.getValue("Theatre_Name"))
+              .put("Type",row.getValue("Type"))
+          );
+        }
+        rc.end(jsonArray.encodePrettily());
+      }
+    });
+  }
+
+  public void readByTheatreName(RoutingContext rc)
+  {
+    String theatrename = rc.pathParam("theatrename");
+    repository.readByTheatreName(theatrename, (bool,rowset)->{
+      if(bool==false)
+      {
+        System.out.println("ERROR!");
+      }
+      else
+      {
+        JsonArray jsonArray = new JsonArray();
+        for(Row row: rowset)
+        {
+          jsonArray.add(
+            new JsonObject()
+              .put("Name",row.getValue("Number"))
+              .put("Play Name",row.getValue("Play_Name"))
+              .put("Date",row.getValue("Date"))
+              .put("Time",row.getValue("Time"))
+              .put("Theatre Name",row.getValue("Theatre_Name"))
+              .put("Type",row.getValue("Type"))
+          );
+        }
+        rc.end(jsonArray.encodePrettily());
+      }
+    });
+  }
+
+  public void readByType(RoutingContext rc)
+  {
+    String type = rc.pathParam("type");
+    repository.readByType(type, (bool,rowset)->{
+      if(bool==false)
+      {
+        System.out.println("ERROR!");
+      }
+      else
+      {
+        JsonArray jsonArray = new JsonArray();
+        for(Row row: rowset)
+        {
+          jsonArray.add(
+            new JsonObject()
+              .put("Name",row.getValue("Number"))
+              .put("Play Name",row.getValue("Play_Name"))
+              .put("Date",row.getValue("Date"))
+              .put("Time",row.getValue("Time"))
+              .put("Theatre Name",row.getValue("Theatre_Name"))
+              .put("Type",row.getValue("Type"))
+          );
+        }
+        rc.end(jsonArray.encodePrettily());
+      }
+    });
+  }
+
+  public void readAll(RoutingContext rc)
+  {
+    String all = rc.pathParam("all");
+    repository.readAll(all, (bool,rowset)->{
+      if(bool==false)
+      {
+        System.out.println("ERROR!");
+      }
+      else
+      {
+        JsonArray jsonArray = new JsonArray();
+        for(Row row: rowset)
+        {
+          jsonArray.add(
+            new JsonObject()
+              .put("Name",row.getValue("Number"))
+              .put("Play Name",row.getValue("Play_Name"))
+              .put("Date",row.getValue("Date"))
+              .put("Time",row.getValue("Time"))
+              .put("Theatre Name",row.getValue("Theatre_Name"))
+              .put("Type",row.getValue("Type"))
           );
         }
         rc.end(jsonArray.encodePrettily());

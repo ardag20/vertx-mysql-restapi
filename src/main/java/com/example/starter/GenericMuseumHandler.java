@@ -31,12 +31,12 @@ public class GenericMuseumHandler {
           {
             jsonArray.add(
               new JsonObject()
-                .put("id",row.getValue("Number"))
-                .put("name",row.getValue("Name"))
-                .put("location",row.getValue("Location"))
-                .put("address",row.getValue("Address"))
-                .put("type",row.getValue("Type"))
-                .put("rating",row.getValue("Rating"))
+                .put("Number",row.getValue("Number"))
+                .put("Name",row.getValue("Name"))
+                .put("Location",row.getValue("Location"))
+                .put("Address",row.getValue("Address"))
+                .put("Type",row.getValue("Type"))
+                .put("Rating",row.getValue("Rating"))
             );
           }
           rc.end(jsonArray.encodePrettily());
@@ -59,12 +59,12 @@ public class GenericMuseumHandler {
         {
           jsonArray.add(
             new JsonObject()
-              .put("id",row.getValue("Number"))
-              .put("name",row.getValue("Name"))
-              .put("location",row.getValue("Location"))
-              .put("address",row.getValue("Address"))
-              .put("type",row.getValue("Type"))
-              .put("rating",row.getValue("Rating"))
+              .put("Number",row.getValue("Number"))
+              .put("Name",row.getValue("Name"))
+              .put("Location",row.getValue("Location"))
+              .put("Address",row.getValue("Address"))
+              .put("Type",row.getValue("Type"))
+              .put("Rating",row.getValue("Rating"))
           );
         }
         rc.end(jsonArray.encodePrettily());
@@ -86,12 +86,12 @@ public class GenericMuseumHandler {
         for(Row row: rowset) {
           jsonArray.add(
             new JsonObject()
-              .put("id", row.getValue("Number"))
-              .put("name", row.getValue("Name"))
-              .put("location", row.getValue("Location"))
-              .put("address",row.getValue("Address"))
-              .put("type",row.getValue("Type"))
-              .put("rating",row.getValue("Rating"))
+              .put("Number", row.getValue("Number"))
+              .put("Name", row.getValue("Name"))
+              .put("Location", row.getValue("Location"))
+              .put("Address",row.getValue("Address"))
+              .put("Type",row.getValue("Type"))
+              .put("Rating",row.getValue("Rating"))
         );
         }
         rc.end(jsonArray.encodePrettily());
@@ -115,12 +115,12 @@ public class GenericMuseumHandler {
         {
           jsonArray.add(
             new JsonObject()
-              .put("id",row.getValue("Number"))
-              .put("name",row.getValue("Name"))
-              .put("location",row.getValue("Location"))
-              .put("address",row.getValue("Address"))
-              .put("type",row.getValue("Type"))
-              .put("rating",row.getValue("Rating"))
+              .put("Number",row.getValue("Number"))
+              .put("Name",row.getValue("Name"))
+              .put("Location",row.getValue("Location"))
+              .put("Address",row.getValue("Address"))
+              .put("Type",row.getValue("Type"))
+              .put("Rating",row.getValue("Rating"))
           );
         }
         rc.end(jsonArray.encodePrettily());
@@ -143,12 +143,12 @@ public class GenericMuseumHandler {
         {
           jsonArray.add(
             new JsonObject()
-              .put("id",row.getValue("Number"))
-              .put("name",row.getValue("Name"))
-              .put("location",row.getValue("Location"))
-              .put("address",row.getValue("Address"))
-              .put("type",row.getValue("Type"))
-              .put("rating",row.getValue("Rating"))
+              .put("Number",row.getValue("Number"))
+              .put("Name",row.getValue("Name"))
+              .put("Location",row.getValue("Location"))
+              .put("Address",row.getValue("Address"))
+              .put("Type",row.getValue("Type"))
+              .put("Rating",row.getValue("Rating"))
           );
         }
         rc.end(jsonArray.encodePrettily());
@@ -156,7 +156,33 @@ public class GenericMuseumHandler {
   });
   }
 
-
+  public void readAll(RoutingContext rc)
+  {
+    String all = rc.pathParam("all");
+    repository.readAll(all, (bool,rowset)->{
+      if(bool==false)
+      {
+        System.out.println("ERROR!");
+      }
+      else
+      {
+        JsonArray jsonArray = new JsonArray();
+        for(Row row: rowset)
+        {
+          jsonArray.add(
+            new JsonObject()
+              .put("Number",row.getValue("Number"))
+              .put("Name",row.getValue("Name"))
+              .put("Location",row.getValue("Location"))
+              .put("Address",row.getValue("Address"))
+              .put("Type",row.getValue("Type"))
+              .put("Rating",row.getValue("Rating"))
+          );
+        }
+        rc.end(jsonArray.encodePrettily());
+      }
+    });
+  }
 
 
 }

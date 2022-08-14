@@ -42,9 +42,17 @@ public class MainVerticle extends AbstractVerticle {
     router.get("/api/museums/name/:name").handler(handler::readByName);
     router.get("/api/museums/number/:number").handler(handler::readByNumber);
     router.get("/api/museums/type/:type").handler(handler::readByType);
+    router.get("/api/museums/all").handler(handler::readAll);
+
 
     router.route("/api/theatres*").handler(BodyHandler.create());
     router.get("/api/theatres/number/:number").handler(handler1::readByNumber);
+    router.get("/api/theatres/playname/:playname").handler(handler1::readByPlayName);
+    router.get("/api/theatres/date/:date").handler(handler1::readByDate);
+    router.get("/api/theatres/time/:time").handler(handler1::readByTime);
+    router.get("/api/theatres/theatrename/:theatrename").handler(handler1::readByTheatreName);
+    router.get("/api/theatres/type/:type").handler(handler1::readByType);
+    router.get("/api/theatres/all").handler(handler1::readAll);
 
 
 

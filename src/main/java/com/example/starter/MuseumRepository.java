@@ -44,6 +44,12 @@ public class MuseumRepository {
     getRowSet(query,consumer);
   }
 
+  public void readAll(String all, BiConsumer<Boolean, RowSet<Row>> consumer)
+  {
+    String query = "select * from Muze";
+    getRowSet(query,consumer);
+  }
+
   public void getRowSet(String query, BiConsumer<Boolean, RowSet<Row>> consumer)
   {
     client
@@ -70,7 +76,7 @@ public class MuseumRepository {
         }
 
         // Now close the pool
-        client.close();
+        //client.close();
       });
 
   }

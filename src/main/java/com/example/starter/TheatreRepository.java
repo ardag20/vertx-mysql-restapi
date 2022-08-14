@@ -22,6 +22,41 @@ public class TheatreRepository {
     getRowSet(query,consumer);
   }
 
+  public void readByPlayName(String playname, BiConsumer<Boolean, RowSet<Row>> consumer)
+  {
+    String query = "select * from Tiyatro where Play_Name='"+playname+"'";
+    getRowSet(query,consumer);
+  }
+
+  public void readByDate(String date, BiConsumer<Boolean, RowSet<Row>> consumer)
+  {
+    String query = "select * from Tiyatro where Date='"+date+"'";
+    getRowSet(query, consumer);
+  }
+
+  public void readByTime(String time, BiConsumer<Boolean, RowSet<Row>> consumer)
+  {
+    String query = "select * from Tiyatro where Time='"+time+"'";
+    getRowSet(query, consumer);
+  }
+
+  public void readByTheatreName(String theatrename, BiConsumer<Boolean, RowSet<Row>> consumer)
+  {
+      String query = "select * from Tiyatro where Theatre_Name='"+theatrename+"'";
+      getRowSet(query,consumer);
+  }
+
+  public void readByType(String type, BiConsumer<Boolean, RowSet<Row>> consumer)
+  {
+    String query = "select * from Tiyatro where Type='"+type+"'";
+    getRowSet(query,consumer);
+  }
+
+  public void readAll(String all, BiConsumer<Boolean, RowSet<Row>> consumer)
+  {
+    String query = "select * from Tiyatro";
+    getRowSet(query,consumer);
+  }
 
   public void getRowSet(String query, BiConsumer<Boolean, RowSet<Row>> consumer)
   {
@@ -49,7 +84,7 @@ public class TheatreRepository {
         {
           System.out.println("Failure: " + ar.cause().getMessage());
         }
-        client.close();
+        //client.close();
       } );
   }
 
