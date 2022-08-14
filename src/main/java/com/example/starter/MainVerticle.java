@@ -7,8 +7,6 @@ import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.mysqlclient.MySQLConnectOptions;
 import io.vertx.mysqlclient.MySQLPool;
 import io.vertx.sqlclient.PoolOptions;
-import io.vertx.sqlclient.Row;
-import io.vertx.sqlclient.RowSet;
 import io.vertx.sqlclient.SqlClient;
 
 public class MainVerticle extends AbstractVerticle {
@@ -31,12 +29,23 @@ public class MainVerticle extends AbstractVerticle {
 
 
     MuseumRepository repository = new MuseumRepository(client);
-    GenericHandler handler = new GenericHandler(repository);
+    TheatreRepository repository1 = new TheatreRepository(client);
+
+    GenericMuseumHandler handler = new GenericMuseumHandler(repository);
+    GenericTheatreHandler handler1 = new GenericTheatreHandler(repository1);
+
     Router router = Router.router(vertx);
 
     router.route("/api/museums*").handler(BodyHandler.create());
     router.get("/api/museums/location/:locationName").handler(handler::readByLocation);
-                ///api/museums/rating/:rating  hepsı ıcın yapılıcak.
+    router.get("/api/museums/rating/:rating").handler(handler::readByRating);
+    router.get("/api/museums/name/:name").handler(handler::readByName);
+    router.get("/api/museums/number/:number").handler(handler::readByNumber);
+    router.get("/api/museums/type/:type").handler(handler::readByType);
+
+    router.route("/api/theatres*").handler(BodyHandler.create());
+    router.get("/api/theatres/number/:number").handler(handler1::readByNumber);
+
 
 
     vertx.createHttpServer().requestHandler(router).listen(8080, http -> {

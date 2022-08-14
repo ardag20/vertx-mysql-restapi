@@ -16,13 +16,31 @@ public class MuseumRepository {
 
   public void readyByLocation(String location, BiConsumer<Boolean, RowSet<Row>> consumer)
   {
-    String query = "select * from Muze where Konum='"+location+"'";
+    String query = "select * from Muze where Location='"+location+"'";
     getRowSet(query,consumer);
   }
 
   public void readyByRating(String rating, BiConsumer<Boolean, RowSet<Row>> consumer)
   {
     String query = "select * from Muze where Rating>="+rating;
+    getRowSet(query,consumer);
+  }
+
+  public void readByName(String name, BiConsumer<Boolean, RowSet<Row>> consumer)
+  {
+    String query = "select * from Muze where Name='"+name+"'";
+    getRowSet(query,consumer);
+  }
+
+  public void readByNumber(String number, BiConsumer<Boolean, RowSet<Row>> consumer)
+  {
+    String query = "select * from Muze where Number="+number;
+    getRowSet(query,consumer);
+  }
+
+  public void readByType(String type, BiConsumer<Boolean, RowSet<Row>> consumer)
+  {
+    String query = "select * from Muze where Type='"+type+"'";
     getRowSet(query,consumer);
   }
 
@@ -42,7 +60,7 @@ public class MuseumRepository {
           {
             for(Row museum: result)
             {
-              System.out.println(museum.getString("İsim"));
+              System.out.println(museum.getString("Name"));
             }
             System.out.println("Got " + result.size() + " rows ");
             consumer.accept(true,result);
