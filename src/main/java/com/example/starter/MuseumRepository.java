@@ -50,6 +50,12 @@ public class MuseumRepository {
     getRowSet(query,consumer);
   }
 
+  public void readDistinctLocations(BiConsumer<Boolean, RowSet<Row>> consumer)
+  {
+    String query = "select distinct Location from Muze";
+    getRowSet(query,consumer);
+  }
+
   public void getRowSet(String query, BiConsumer<Boolean, RowSet<Row>> consumer)
   {
     client
@@ -64,9 +70,9 @@ public class MuseumRepository {
           }
           else
           {
-            for(Row museum: result)
+            for(Row row: result)
             {
-              System.out.println(museum.getString("Name"));
+              System.out.println("row requested: "+row);
             }
             System.out.println("Got " + result.size() + " rows ");
             consumer.accept(true,result);
