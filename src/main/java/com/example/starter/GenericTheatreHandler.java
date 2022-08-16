@@ -12,6 +12,10 @@ public class GenericTheatreHandler {
 
   private final TheatreRepository repository;
 
+  protected static final String CONTENT_TYPE_HEADER = "Content-Type";
+
+  protected static final String JSON_CONTENT_TYPE = "application/json; charset=UTF-8";
+
   public GenericTheatreHandler(TheatreRepository repository) {
     this.repository = repository;
   }
@@ -39,8 +43,9 @@ public class GenericTheatreHandler {
               .put("Type",row.getValue("Type"))
           );
         }
-        rc.end(jsonArray.encodePrettily());
-      }
+        rc.response()
+          .putHeader(CONTENT_TYPE_HEADER, JSON_CONTENT_TYPE)
+          .end(jsonArray.encodePrettily());             }
     });
   }
 
@@ -67,7 +72,9 @@ public class GenericTheatreHandler {
               .put("Type",row.getValue("Type"))
           );
         }
-        rc.end(jsonArray.encodePrettily());
+        rc.response()
+          .putHeader(CONTENT_TYPE_HEADER, JSON_CONTENT_TYPE)
+          .end(jsonArray.encodePrettily());
       }
     });
   }
@@ -95,7 +102,9 @@ public class GenericTheatreHandler {
               .put("Type",row.getValue("Type"))
           );
         }
-        rc.end(jsonArray.encodePrettily());
+        rc.response()
+          .putHeader(CONTENT_TYPE_HEADER, JSON_CONTENT_TYPE)
+          .end(jsonArray.encodePrettily());
       }
     });
   }
@@ -123,7 +132,9 @@ public class GenericTheatreHandler {
               .put("Type",row.getValue("Type"))
           );
         }
-        rc.end(jsonArray.encodePrettily());
+        rc.response()
+          .putHeader(CONTENT_TYPE_HEADER, JSON_CONTENT_TYPE)
+          .end(jsonArray.encodePrettily());
       }
     });
   }
@@ -151,7 +162,9 @@ public class GenericTheatreHandler {
               .put("Type",row.getValue("Type"))
           );
         }
-        rc.end(jsonArray.encodePrettily());
+        rc.response()
+          .putHeader(CONTENT_TYPE_HEADER, JSON_CONTENT_TYPE)
+          .end(jsonArray.encodePrettily());
       }
     });
   }
@@ -179,7 +192,9 @@ public class GenericTheatreHandler {
               .put("Type",row.getValue("Type"))
           );
         }
-        rc.end(jsonArray.encodePrettily());
+        rc.response()
+          .putHeader(CONTENT_TYPE_HEADER, JSON_CONTENT_TYPE)
+          .end(jsonArray.encodePrettily());
       }
     });
   }
@@ -207,7 +222,9 @@ public class GenericTheatreHandler {
               .put("Type",row.getValue("Type"))
           );
         }
-        rc.end(jsonArray.encodePrettily());
+        rc.response()
+          .putHeader(CONTENT_TYPE_HEADER, JSON_CONTENT_TYPE)
+          .end(jsonArray.encodePrettily());
       }
     });
   }

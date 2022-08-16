@@ -16,6 +16,10 @@ public class GenericMuseumHandler {
     this.repository = repository;
   }
 
+  protected static final String CONTENT_TYPE_HEADER = "Content-Type";
+
+  protected static final String JSON_CONTENT_TYPE = "application/json; charset=UTF-8";
+
   public void readByRating(RoutingContext rc)
   {
       String rating = rc.pathParam("rating");
@@ -39,7 +43,10 @@ public class GenericMuseumHandler {
                 .put("Rating",row.getValue("Rating"))
             );
           }
-          rc.end(jsonArray.encodePrettily());
+
+          rc.response()
+            .putHeader(CONTENT_TYPE_HEADER, JSON_CONTENT_TYPE)
+            .end(jsonArray.encodePrettily());                         //json olarak dondum, response olarak donuyorum.
         }
       });
   }
@@ -67,8 +74,9 @@ public class GenericMuseumHandler {
               .put("Rating",row.getValue("Rating"))
           );
         }
-        rc.end(jsonArray.encodePrettily());
-      }
+        rc.response()
+          .putHeader(CONTENT_TYPE_HEADER, JSON_CONTENT_TYPE)
+          .end(jsonArray.encodePrettily());             }
     });
   }
 
@@ -94,8 +102,9 @@ public class GenericMuseumHandler {
               .put("Rating",row.getValue("Rating"))
         );
         }
-        rc.end(jsonArray.encodePrettily());
-
+        rc.response()
+          .putHeader(CONTENT_TYPE_HEADER, JSON_CONTENT_TYPE)
+          .end(jsonArray.encodePrettily());
       }
     });
   }
@@ -123,8 +132,9 @@ public class GenericMuseumHandler {
               .put("Rating",row.getValue("Rating"))
           );
         }
-        rc.end(jsonArray.encodePrettily());
-      }
+        rc.response()
+          .putHeader(CONTENT_TYPE_HEADER, JSON_CONTENT_TYPE)
+          .end(jsonArray.encodePrettily());             }
     });
   }
 
@@ -151,8 +161,9 @@ public class GenericMuseumHandler {
               .put("Rating",row.getValue("Rating"))
           );
         }
-        rc.end(jsonArray.encodePrettily());
-      }
+        rc.response()
+          .putHeader(CONTENT_TYPE_HEADER, JSON_CONTENT_TYPE)
+          .end(jsonArray.encodePrettily());             }
   });
   }
 
@@ -179,8 +190,9 @@ public class GenericMuseumHandler {
               .put("Rating",row.getValue("Rating"))
           );
         }
-        rc.end(jsonArray.encodePrettily());
-      }
+        rc.response()
+          .putHeader(CONTENT_TYPE_HEADER, JSON_CONTENT_TYPE)
+          .end(jsonArray.encodePrettily());             }
     });
   }
 
