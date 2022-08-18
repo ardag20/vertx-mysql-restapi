@@ -11,6 +11,8 @@ import io.vertx.sqlclient.SqlClient;
 
 public class MainVerticle extends AbstractVerticle {
 
+
+
   @Override
   public void start(Promise<Void> startPromise) throws Exception {
     MySQLConnectOptions connectOptions = new MySQLConnectOptions()
@@ -45,6 +47,7 @@ public class MainVerticle extends AbstractVerticle {
     router.get("/api/museums/all").handler(handler::readAll);
 
     router.get("/api/museums/distinctLocations").handler(handler::readDistinctLocations);
+    router.get("/api/museums/distinctTypes").handler(handler::readDistinctTypes);
 
 
     router.route("/api/theatres*").handler(BodyHandler.create());
@@ -56,6 +59,10 @@ public class MainVerticle extends AbstractVerticle {
     router.get("/api/theatres/type/:type").handler(handler1::readByType);
     router.get("/api/theatres/all").handler(handler1::readAll);
 
+    router.get("/api/theatres/distinctTypes").handler(handler1::readDistinctTypes);
+    router.get("/api/theatres/distinctTheatreNames").handler(handler1::readDistinctTheatreNames);
+    router.get("/api/theatres/distinctTimes").handler(handler1::readDistinctTimes);
+    router.get("/api/theatres/distinctDates").handler(handler1::readDistinctDates);
 
 
     vertx.createHttpServer().requestHandler(router).listen(8080, http -> {

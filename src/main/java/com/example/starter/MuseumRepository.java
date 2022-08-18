@@ -56,6 +56,12 @@ public class MuseumRepository {
     getRowSet(query,consumer);
   }
 
+  public void readDistinctTypes(BiConsumer<Boolean, RowSet<Row>> consumer)
+  {
+    String query = "select distinct Type from Muze";
+    getRowSet(query,consumer);
+  }
+
   public void getRowSet(String query, BiConsumer<Boolean, RowSet<Row>> consumer)
   {
     client

@@ -100,6 +100,22 @@ public class GenericMuseumHandler {
     });
   }
 
+  public void readDistinctTypes(RoutingContext rc)
+  {
+    repository.readDistinctTypes((bool,rowset)->{
+      JsonObject jsonObject = new JsonObject();
+      List<String> types = new ArrayList<>();
+        for(Row row: rowset)
+        {
+          types.add(row.getValue("Type").toString());
+        }
+        jsonObject.put("types",types);
+        rc.response()
+          .putHeader(CONTENT_TYPE_HEADER, JSON_CONTENT_TYPE)
+          .end(jsonObject.encodePrettily());
+    });
+  }
+
   private JsonArray fillJsonArray(Boolean bool, RowSet<Row> rowset)
   {
     if(bool==false)

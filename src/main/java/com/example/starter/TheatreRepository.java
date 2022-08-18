@@ -7,7 +7,6 @@ import io.vertx.sqlclient.RowSet;
 import java.util.function.BiConsumer;
 
 
-
 public class TheatreRepository {
 
   public TheatreRepository(SqlClient client) {
@@ -58,6 +57,30 @@ public class TheatreRepository {
     getRowSet(query,consumer);
   }
 
+  public void readDistinctTypes(BiConsumer<Boolean, RowSet<Row>> consumer)
+  {
+    String query = "select distinct Type from Tiyatro";
+    getRowSet(query,consumer);
+  }
+
+  public void readDistinctTheatreNames(BiConsumer<Boolean, RowSet<Row>> consumer)
+  {
+    String query = "select distinct Theatre_Name from Tiyatro";
+    getRowSet(query,consumer);
+  }
+
+  public void readDistinctTimes(BiConsumer<Boolean, RowSet<Row>> consumer)
+  {
+    String query = "select distinct Time from Tiyatro";
+    getRowSet(query,consumer);
+  }
+
+  public void readDistinctDates(BiConsumer<Boolean, RowSet<Row>> consumer)
+  {
+    String query = "select distinct Date from Tiyatro";
+    getRowSet(query,consumer);
+  }
+
   public void getRowSet(String query, BiConsumer<Boolean, RowSet<Row>> consumer)
   {
     client
@@ -73,9 +96,9 @@ public class TheatreRepository {
           }
           else
           {
-            for(Row theatre: result)
+            for(Row row: result)
             {
-              System.out.println(theatre.getString("Play_Name"));
+              System.out.println("row requested: "+row);
             }
             System.out.println("Got "+result.size()+" rows");
             consumer.accept(true,result);
