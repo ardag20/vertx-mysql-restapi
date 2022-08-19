@@ -139,7 +139,7 @@ public class GenericMuseumHandler {
         );
       }
       return jsonArray;
+    }
   }
 
-  }
 }

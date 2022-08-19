@@ -32,9 +32,11 @@ public class MainVerticle extends AbstractVerticle {
 
     MuseumRepository repository = new MuseumRepository(client);
     TheatreRepository repository1 = new TheatreRepository(client);
+    ConcertRepository repository2 = new ConcertRepository(client);
 
     GenericMuseumHandler handler = new GenericMuseumHandler(repository);
     GenericTheatreHandler handler1 = new GenericTheatreHandler(repository1);
+    GenericConcertHandler handler2 = new GenericConcertHandler(repository2);
 
     Router router = Router.router(vertx);
 
@@ -63,6 +65,16 @@ public class MainVerticle extends AbstractVerticle {
     router.get("/api/theatres/distinctTheatreNames").handler(handler1::readDistinctTheatreNames);
     router.get("/api/theatres/distinctTimes").handler(handler1::readDistinctTimes);
     router.get("/api/theatres/distinctDates").handler(handler1::readDistinctDates);
+
+    router.route("/api/concerts*").handler(BodyHandler.create());
+    router.get("/api/concerts/number/:number").handler(handler2::readByNumber);
+    router.get("/api/concerts/name/:name").handler(handler2::readByName);
+    router.get("/api/concerts/date/:date").handler(handler2::readByDate);
+    router.get("/api/concerts/time/:time").handler(handler2::readByTime);
+
+    router.get("/api/concerts/distinctLocations").handler(handler2::readDistinctLocations);
+    router.get("/api/concerts/distinctTimes").handler(handler2::readDistinctTimes);
+    router.get("/api/concerts/distinctDates").handler(handler2::readDistinctDates);
 
 
     vertx.createHttpServer().requestHandler(router).listen(8080, http -> {
